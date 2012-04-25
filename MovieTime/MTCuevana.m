@@ -72,8 +72,8 @@
 +(NSArray *)getMovies
 {
 
-    NSURL *urlMovies = [NSURL URLWithString:movies];
-    NSData* data = [NSData dataWithContentsOfURL:urlMovies];
+//    NSURL *urlMovies = [NSURL URLWithString:movies];
+//    NSData* data = [NSData dataWithContentsOfURL:urlMovies];
     
     
 
