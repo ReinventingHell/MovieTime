@@ -20,11 +20,11 @@
 		157148501547F5A300B45A09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		157148521547F5A300B45A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		157148541547F5A300B45A09 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		157148581547F5A300B45A09 /* MovieTime-Info.plist */ = {isa = PBXFileReference; path = "MovieTime-Info.plist"; sourceTree = "<group>"; };
+		157148581547F5A300B45A09 /* MovieTime-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MovieTime-Info.plist"; sourceTree = "<group>"; };
 		1571485A1547F5A300B45A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1571485C1547F5A300B45A09 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1571485E1547F5A300B45A09 /* MovieTime-Prefix.pch */ = {isa = PBXFileReference; path = "MovieTime-Prefix.pch"; sourceTree = "<group>"; };
-		1571485F1547F5A300B45A09 /* MTAppDelegate.h */ = {isa = PBXFileReference; path = MTAppDelegate.h; sourceTree = "<group>"; };
+		1571485E1547F5A300B45A09 /* MovieTime-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MovieTime-Prefix.pch"; sourceTree = "<group>"; };
+		1571485F1547F5A300B45A09 /* MTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTAppDelegate.h; sourceTree = "<group>"; };
 		157148601547F5A300B45A09 /* MTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTAppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
