@@ -6,7 +6,9 @@
 //  Copyright (c) 2012 SmartCode. All rights reserved.
 //
 
+#import "MTCuevana.h"
 #import "MTAppDelegate.h"
+#import "Show.h"
 
 @implementation MTAppDelegate
 
@@ -18,6 +20,14 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    //Pruebas
+    NSMutableArray *lista = [MTCuevana getAllSeries];
+    for (Show *listaItem in lista) {
+        NSLog(@"Titulo: %@", listaItem.title);
+    }
+    //fin pruebas
+    
     return YES;
 }
 

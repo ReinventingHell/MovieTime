@@ -8,6 +8,7 @@
 
 #import "MTUrlsCuevana.h"
 #import "MTCuevana.h"
+#import "Show.h"
 #import "SBJson.h"
 
 @implementation MTCuevana
@@ -32,8 +33,11 @@
     return nil;   
 }
 
-+(NSArray *)getAllSeries
++(NSMutableArray *)getAllSeries
 { 
+    //Creo el array a retornar
+    NSMutableArray *list = [[NSMutableArray alloc] init];
+    
     NSURL *urlLatestMovies = [NSURL URLWithString:shows];
     NSData* data = [NSData dataWithContentsOfURL:urlLatestMovies];
     
@@ -59,14 +63,24 @@
 	NSArray *showsList = [jsonParser objectWithString:toParser error:NULL];
     //Recorro los elementos del array y obtengo la informacion de estos
     for (NSDictionary *showItem in showsList) {
-        //Aca habria que instanciar un objeto de movie y agragarlo a la lista actual
+        //Ontengo los datos y creo la serie y la agrego a la lista
         NSString *titulo = [showItem objectForKey:@"tit"];
         NSString *url = [showItem objectForKey:@"url"];
-        NSLog(@"Titulo: %@",titulo);
-        NSLog(@"URL: %@",url);
+        int duracion = [showItem objectForKey:@"duracion"];
+        int episodios = [showItem objectForKey:@"episodios"];
+        int temporadas = [showItem objectForKey:@"temporadas"];
+        //Creo la nueva serie
+        Show *serie = [[Show alloc] initWithTitle:titulo
+                                              url:url
+                                          seasons:temporadas
+                                         duration:duracion
+                                        episodies:episodios];
+        //Agrego a la lista
+        [list addObject:serie];
+                       
     }
 
-    return nil;
+    return list;
 }
 
 +(NSArray *)getMovies
