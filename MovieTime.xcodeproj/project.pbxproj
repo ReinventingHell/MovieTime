@@ -25,6 +25,10 @@
 		153DF4C61547F8F200C28824 /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4C51547F8F100C28824 /* Season.m */; };
 		153DF4C91547F91200C28824 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4C81547F91200C28824 /* Episode.m */; };
 		153DF4CC1547F92900C28824 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4CB1547F92900C28824 /* Movie.m */; };
+		153DF4D71548262000C28824 /* MTMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4D61548261F00C28824 /* MTMainView.m */; };
+		153DF4DD1548272C00C28824 /* MTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4DC1548272C00C28824 /* MTMainViewController.m */; };
+		153DF4EE154834A900C28824 /* MTRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4ED154834A800C28824 /* MTRightViewController.m */; };
+		153DF4F0154837D200C28824 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 153DF4EF154837D100C28824 /* QuartzCore.framework */; };
 		157148511547F5A300B45A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157148501547F5A300B45A09 /* UIKit.framework */; };
 		157148531547F5A300B45A09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157148521547F5A300B45A09 /* Foundation.framework */; };
 		157148551547F5A300B45A09 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157148541547F5A300B45A09 /* CoreGraphics.framework */; };
@@ -71,6 +75,13 @@
 		153DF4C81547F91200C28824 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
 		153DF4CA1547F92800C28824 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		153DF4CB1547F92900C28824 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		153DF4D51548261F00C28824 /* MTMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMainView.h; sourceTree = "<group>"; };
+		153DF4D61548261F00C28824 /* MTMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMainView.m; sourceTree = "<group>"; };
+		153DF4DB1548272C00C28824 /* MTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMainViewController.h; sourceTree = "<group>"; };
+		153DF4DC1548272C00C28824 /* MTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMainViewController.m; sourceTree = "<group>"; };
+		153DF4EC154834A800C28824 /* MTRightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRightViewController.h; sourceTree = "<group>"; };
+		153DF4ED154834A800C28824 /* MTRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRightViewController.m; sourceTree = "<group>"; };
+		153DF4EF154837D100C28824 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1571484C1547F5A300B45A09 /* MovieTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		157148501547F5A300B45A09 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		157148521547F5A300B45A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -88,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				153DF4F0154837D200C28824 /* QuartzCore.framework in Frameworks */,
 				157148511547F5A300B45A09 /* UIKit.framework in Frameworks */,
 				157148531547F5A300B45A09 /* Foundation.framework in Frameworks */,
 				157148551547F5A300B45A09 /* CoreGraphics.framework in Frameworks */,
@@ -159,6 +171,8 @@
 		153DF4BD1547F79F00C28824 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				153DF4D51548261F00C28824 /* MTMainView.h */,
+				153DF4D61548261F00C28824 /* MTMainView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -166,6 +180,10 @@
 		153DF4BE1547F7A200C28824 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				153DF4DB1548272C00C28824 /* MTMainViewController.h */,
+				153DF4DC1548272C00C28824 /* MTMainViewController.m */,
+				153DF4EC154834A800C28824 /* MTRightViewController.h */,
+				153DF4ED154834A800C28824 /* MTRightViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -205,6 +223,7 @@
 		1571484F1547F5A300B45A09 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				153DF4EF154837D100C28824 /* QuartzCore.framework */,
 				157148501547F5A300B45A09 /* UIKit.framework */,
 				157148521547F5A300B45A09 /* Foundation.framework */,
 				157148541547F5A300B45A09 /* CoreGraphics.framework */,
@@ -319,6 +338,9 @@
 				153DF4C61547F8F200C28824 /* Season.m in Sources */,
 				153DF4C91547F91200C28824 /* Episode.m in Sources */,
 				153DF4CC1547F92900C28824 /* Movie.m in Sources */,
+				153DF4D71548262000C28824 /* MTMainView.m in Sources */,
+				153DF4DD1548272C00C28824 /* MTMainViewController.m in Sources */,
+				153DF4EE154834A900C28824 /* MTRightViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +411,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovieTime/MovieTime-Prefix.pch";
 				INFOPLIST_FILE = "MovieTime/MovieTime-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -400,7 +424,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MovieTime/MovieTime-Prefix.pch";
 				INFOPLIST_FILE = "MovieTime/MovieTime-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

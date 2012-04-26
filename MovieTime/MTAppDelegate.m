@@ -12,13 +12,15 @@
 
 @implementation MTAppDelegate
 
-@synthesize window = _window;
+@synthesize window, viewController;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	// Initialize the main application window, set its size to the screen's applicationFrame
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+        
+
+        
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
     //Pruebas
@@ -29,6 +31,7 @@
     //fin pruebas
     
     return YES;
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
