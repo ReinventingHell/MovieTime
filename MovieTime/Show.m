@@ -27,11 +27,13 @@
     // Call the superclass's designated initializer
     self = [super init];
     // Give the instance variables initial values
-    [self setTitle:pTitle];
-    [self setUrl:pUrl];
-    [self setSeasons:pSeasons];
-    [self setDuration:pDuration];
-    [self setEpisodies:pEpisodies];
+    if (self) {
+        [self setTitle:pTitle];
+        [self setUrl:pUrl];
+        [self setSeasons:pSeasons];
+        [self setDuration:pDuration];
+        [self setEpisodies:pEpisodies];
+    }
 //    dateCreated = [[NSDate alloc] init];
     // Return the address of the newly initialized object
     return self;
