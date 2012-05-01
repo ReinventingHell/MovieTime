@@ -7,20 +7,17 @@
 //
 
 #import "MTCuevana.h"
-#import "MTAppDelegate.h"
 #import "Show.h"
+#import "MTAppDelegate.h"
 
 @implementation MTAppDelegate
 
-@synthesize window, viewController;
+@synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Initialize the main application window, set its size to the screen's applicationFrame
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        
-
-        
-    self.window.rootViewController = self.viewController;
+    
     [self.window makeKeyAndVisible];
     
     //Pruebas
