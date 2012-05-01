@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class MTMainViewController;
 
-@interface MTAppDelegate : UIResponder <UIApplicationDelegate>
+@interface MTAppDelegate : UIResponder <UIApplicationDelegate> 
 
-@property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) MTMainViewController *mainView;
 
 
 @end
