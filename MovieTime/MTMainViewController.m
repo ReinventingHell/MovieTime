@@ -12,7 +12,7 @@
 
 -(void)viewDidLoad
 {
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]];
 }
 
 @end
