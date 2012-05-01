@@ -11,6 +11,11 @@
 #import "Show.h"
 #import "SBJson.h"
 
+@interface MTCuevana()
+//Declaro los metodos y propiedades privadas de la clase
++(NSData *)getDataFromUrl:(NSString *)url;
+@end
+
 @implementation MTCuevana
 
 
@@ -38,8 +43,8 @@
     //Creo el array a retornar
     NSMutableArray *list = [[NSMutableArray alloc] init];
     
-    NSURL *urlLatestMovies = [NSURL URLWithString:shows];
-    NSData* data = [NSData dataWithContentsOfURL:urlLatestMovies];
+    //Obtengo la data
+    NSData* data = [self getDataFromUrl:shows];
     
     //Armo el string con la info de data
     NSString *respuesta = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -94,5 +99,11 @@
     return nil;
 }
 
+//Implementacion metodos privados
++(NSData *)getDataFromUrl:(NSString *)url{
+    NSURL *urlData = [NSURL URLWithString:url];
+    NSData* data = [NSData dataWithContentsOfURL:urlData];
+    return data;
+}    
 
 @end

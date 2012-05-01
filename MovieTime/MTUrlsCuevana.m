@@ -17,7 +17,7 @@ NSString * const host = @"http://www.cuevana.tv";
 NSString * const staticHost = @"http://sc.cuevana.tv";
 //Ver
 NSString * const shows = hostUrl@"/web/series";
-NSString * const showInfo = hostUrl@"/web/series?&%s&%s&%s";
+NSString * const showInfo = hostUrl@"/web/series?&%s&%s&%s"; //deberia cambiar los %s p
 NSString * const seasons = hostUrl@"/web/series?&%s&%s";
 //Peliculas
 NSString * const movies = hostUrl@"/web/peliculas";
