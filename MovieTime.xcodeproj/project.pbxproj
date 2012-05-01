@@ -34,7 +34,8 @@
 		157148611547F5A300B45A09 /* MTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 157148601547F5A300B45A09 /* MTAppDelegate.m */; };
 		15C5F4A1154FA81D00DB3820 /* MTMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C5F4A0154FA81D00DB3820 /* MTMainView.m */; };
 		15C5F4AB154FA8F600DB3820 /* MTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C5F4AA154FA8F600DB3820 /* MTMainViewController.m */; };
-		15C5F4AF154FBF1400DB3820 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C5F4AE154FBF1400DB3820 /* Background.png */; };
+		15C5F4B51550225800DB3820 /* Background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C5F4B41550225800DB3820 /* Background2.png */; };
+		15C5F4B91550260900DB3820 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C5F4B81550260900DB3820 /* Background.png */; };
 		15DF3EBD154F5FCC00ECF7D3 /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DF3EBA154F5FCC00ECF7D3 /* ECSlidingViewController.m */; };
 		15DF3EBE154F5FCC00ECF7D3 /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DF3EBC154F5FCC00ECF7D3 /* UIImage+ImageWithUIView.m */; };
 /* End PBXBuildFile section */
@@ -92,7 +93,8 @@
 		15C5F4A0154FA81D00DB3820 /* MTMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMainView.m; sourceTree = "<group>"; };
 		15C5F4A9154FA8F600DB3820 /* MTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMainViewController.h; sourceTree = "<group>"; };
 		15C5F4AA154FA8F600DB3820 /* MTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMainViewController.m; sourceTree = "<group>"; };
-		15C5F4AE154FBF1400DB3820 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
+		15C5F4B41550225800DB3820 /* Background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background2.png; sourceTree = "<group>"; };
+		15C5F4B81550260900DB3820 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		15DF3EB9154F5FCC00ECF7D3 /* ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingViewController.h; sourceTree = "<group>"; };
 		15DF3EBA154F5FCC00ECF7D3 /* ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
 		15DF3EBB154F5FCC00ECF7D3 /* UIImage+ImageWithUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithUIView.h"; sourceTree = "<group>"; };
@@ -171,7 +173,8 @@
 		153DF4BF1547F7B400C28824 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				15C5F4AE154FBF1400DB3820 /* Background.png */,
+				15C5F4B41550225800DB3820 /* Background2.png */,
+				15C5F4B81550260900DB3820 /* Background.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -332,7 +335,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1571485B1547F5A300B45A09 /* InfoPlist.strings in Resources */,
-				15C5F4AF154FBF1400DB3820 /* Background.png in Resources */,
+				15C5F4B51550225800DB3820 /* Background2.png in Resources */,
+				15C5F4B91550260900DB3820 /* Background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
