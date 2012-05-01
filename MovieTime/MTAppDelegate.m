@@ -14,12 +14,14 @@
 @implementation MTAppDelegate
 
 @synthesize window;
+@synthesize mainView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Initialize the main application window, set its size to the screen's applicationFrame
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.window.rootViewController = [[MTMainViewController alloc] initWithNibName:nil bundle:nil];
+    
     
     [self.window makeKeyAndVisible];
     
@@ -33,6 +35,7 @@
     return YES;
     
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
