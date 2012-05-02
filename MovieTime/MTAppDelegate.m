@@ -26,7 +26,7 @@
     [self.window makeKeyAndVisible];
     
     //Pruebas
-    NSMutableArray *lista = [MTCuevana getAllSeries];
+    NSMutableArray *lista = [MTCuevana getMovies];
     for (Show *listaItem in lista) {
         NSLog(@"Titulo: %@", listaItem.title);
     }

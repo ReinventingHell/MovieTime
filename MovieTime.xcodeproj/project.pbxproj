@@ -132,10 +132,7 @@
 		153DF4BA1547F75D00C28824 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				15E431881550F5E2001A4EE0 /* HTMLNode.h */,
-				15E431891550F5E2001A4EE0 /* HTMLNode.m */,
-				15E4318A1550F5E2001A4EE0 /* HTMLParser.h */,
-				15E4318B1550F5E2001A4EE0 /* HTMLParser.m */,
+				15E431921550F6E5001A4EE0 /* HTML Parser */,
 				15DF3EB8154F5FCC00ECF7D3 /* ECSlidingViewController */,
 				15DF3EB1154F5DBC00ECF7D3 /* JSON Parser */,
 			);
@@ -302,6 +299,17 @@
 				15DF3EBC154F5FCC00ECF7D3 /* UIImage+ImageWithUIView.m */,
 			);
 			path = ECSlidingViewController;
+			sourceTree = "<group>";
+		};
+		15E431921550F6E5001A4EE0 /* HTML Parser */ = {
+			isa = PBXGroup;
+			children = (
+				15E431881550F5E2001A4EE0 /* HTMLNode.h */,
+				15E431891550F5E2001A4EE0 /* HTMLNode.m */,
+				15E4318A1550F5E2001A4EE0 /* HTMLParser.h */,
+				15E4318B1550F5E2001A4EE0 /* HTMLParser.m */,
+			);
+			name = "HTML Parser";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
