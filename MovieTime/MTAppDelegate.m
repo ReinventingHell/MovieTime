@@ -26,10 +26,13 @@
     [self.window makeKeyAndVisible];
     
     //Pruebas
-    NSMutableArray *lista = [MTCuevana getMovies];
-    for (Show *listaItem in lista) {
-        NSLog(@"Titulo: %@", listaItem.title);
-    }
+    NSArray *lista = [MTCuevana getMovies];
+    
+    
+    //Comente para que no aparezca en estas pruebas de getMovies
+//    for (Show *listaItem in lista) {
+//        NSLog(@"Titulo: %@", listaItem.title);
+//    }
     //fin pruebas
     
     return YES;
