@@ -115,6 +115,7 @@
             html = [html stringByAppendingString:[NSString stringWithContentsOfURL:urlMovies encoding:NSUTF8StringEncoding 
                                                                              error:nil]];
         }
+        NSLog(@"Pagina descargada:%d",pageNumber);
         pageNumber++;
     } while (pageNumber<=3); // ACA VA maxPages , pero para testear puse 3
     //Comenzamos a parsear, iniciamos con el string de todas las paginas
