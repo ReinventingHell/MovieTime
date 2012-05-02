@@ -40,6 +40,8 @@
 		15C5F4E715509CB300DB3820 /* StoryboardIpad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15C5F4E615509CB300DB3820 /* StoryboardIpad.storyboard */; };
 		15DF3EBD154F5FCC00ECF7D3 /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DF3EBA154F5FCC00ECF7D3 /* ECSlidingViewController.m */; };
 		15DF3EBE154F5FCC00ECF7D3 /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DF3EBC154F5FCC00ECF7D3 /* UIImage+ImageWithUIView.m */; };
+		15E431751550EE01001A4EE0 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E431721550EE01001A4EE0 /* HTMLNode.m */; };
+		15E431761550EE01001A4EE0 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E431741550EE01001A4EE0 /* HTMLParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +105,10 @@
 		15DF3EBA154F5FCC00ECF7D3 /* ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
 		15DF3EBB154F5FCC00ECF7D3 /* UIImage+ImageWithUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithUIView.h"; sourceTree = "<group>"; };
 		15DF3EBC154F5FCC00ECF7D3 /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
+		15E431711550EE01001A4EE0 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
+		15E431721550EE01001A4EE0 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
+		15E431731550EE01001A4EE0 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		15E431741550EE01001A4EE0 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 		153DF4BA1547F75D00C28824 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				15E4316F1550EDE0001A4EE0 /* HTML Parser */,
 				15DF3EB8154F5FCC00ECF7D3 /* ECSlidingViewController */,
 				15DF3EB1154F5DBC00ECF7D3 /* JSON Parser */,
 			);
@@ -290,6 +297,17 @@
 			path = ECSlidingViewController;
 			sourceTree = "<group>";
 		};
+		15E4316F1550EDE0001A4EE0 /* HTML Parser */ = {
+			isa = PBXGroup;
+			children = (
+				15E431711550EE01001A4EE0 /* HTMLNode.h */,
+				15E431721550EE01001A4EE0 /* HTMLNode.m */,
+				15E431731550EE01001A4EE0 /* HTMLParser.h */,
+				15E431741550EE01001A4EE0 /* HTMLParser.m */,
+			);
+			name = "HTML Parser";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -379,6 +397,8 @@
 				15DF3EBE154F5FCC00ECF7D3 /* UIImage+ImageWithUIView.m in Sources */,
 				15C5F4AB154FA8F600DB3820 /* MTMainViewController.m in Sources */,
 				15C5F4E515509C1C00DB3820 /* MTMainView.m in Sources */,
+				15E431751550EE01001A4EE0 /* HTMLNode.m in Sources */,
+				15E431761550EE01001A4EE0 /* HTMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
