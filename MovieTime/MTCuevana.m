@@ -116,13 +116,26 @@
                                                                              error:nil]];
         }
         pageNumber++;
-        NSLog(@"Pagina: %d", pageNumber);
-    } while (pageNumber<2); // ACA VA maxPages , pero para testear puse 2
+    } while (pageNumber<=3); // ACA VA maxPages , pero para testear puse 3
+    //Comenzamos a parsear, iniciamos con el string de todas las paginas
     parser = [[HTMLParser alloc] initWithString:html error:nil];
     bodyNode = [parser body];
     NSString *contienePeliculas = @"#!/peliculas/";
+    //busco el nodo padre de los demas nodos con info de la pelicula, siguiendo esta estructura:
+//    <a href="#!/peliculas/1833/die-another-day">
+//    <div class="img"><img src="http://sc.cuevana.tv/box/1833.jpg" /></div>
+//    <div class="box">
+//    <div class="rate"><span style="width:79%"></span></div>
+//    <div class="tit"><span class="floatl">007 - Otro Día Para Morir</span></div><div class="clearl"></div>
+//    <div class="ano">2002</div>
+//    <div class="txt">La nueva misión de James Bond empieza con una persecución en hidrofoil a gran velocidad a través de un campo de minas en la zona desmilitarizada del norte de Corea del Sur. De Hong Kong a...</div>
+//    <div class="rep"><b>Reparto:</b> <span class="reparto">Pierce Brosnan, Halle Berry, Judi Dench, Toby Stephens, John Cleese, Madonna, Ro...</span></div>
+//    <div class="in"><span class="genero">Acción</span> | <span class="idioma">Inglés</span> | <span class="duracion">123</span> min</div>
+//    </div>
+//    <div class="clearl"></div>
+//    </a>
     NSArray *movieNodes = [bodyNode findChildrenWithAttribute:@"href" matchingName:contienePeliculas allowPartial:YES];
-    //Por aca va la mano! 
+    //Por aca va la mano! hay que parsear los nodos hijos, q tienen la info.
     for(HTMLNode *movie in movieNodes){
         NSLog(@"HTML de la movie:%@", [movie rawContents]);
     }
