@@ -110,6 +110,7 @@
     //Comienza a descargar TODO el codigo html de las 190 paginas para luego ser parseado...
     //Me parecia mas eficiente que descargar HTML -> parsear -> descargar HTML -> parsear..
     do {
+        //Ya tenemos la primer pagina descargada asi que la salteamos, y luego se concatenan las demas.
         if(pageNumber != 1){
             urlMovies = [NSURL URLWithString:[movies stringByAppendingString:[NSString stringWithFormat:@"%d",pageNumber]]];
             html = [html stringByAppendingString:[NSString stringWithContentsOfURL:urlMovies encoding:NSUTF8StringEncoding 
