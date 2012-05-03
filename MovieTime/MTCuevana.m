@@ -17,10 +17,10 @@
 @interface MTCuevana()
 //Declaro los metodos y propiedades privadas de la clase
 +(NSData *)getDataFromUrl:(NSString *)url;
++(NSString *)googleLogin;
 @end
 
 @implementation MTCuevana
-
 
 +(NSArray *)getLatestMovies
 {
@@ -33,6 +33,18 @@
 
     NSLog(@"%@", respuesta);
 
+    return nil;
+}
+
++(NSArray *)getLatestSeries
+{
+    NSURL *urlShow = [NSURL URLWithString:latestShowsRSS];
+    NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:urlShow];
+    [req addValue:[@"GoogleLogin auth=" stringByAppendingString:[self googleLogin]] forHTTPHeaderField:@"Authorization"];
+    NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:nil error:nil];
+    NSString *feedEntero = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]; 
+    /// ALELUYA! ANDA! ahora hay que parsear ¬¬
+    NSLog(@"%@",feedEntero);
     return nil;
 }
 
@@ -272,20 +284,20 @@
     int ano,episodios,duracion,seasons;
     for(HTMLNode *serie in serieNodes){
         if ([[serie children] count] > 1) { 
-            NSLog(@"URL:%@",[serie getAttributeNamed:@"href"]);
+            //NSLog(@"URL:%@",[serie getAttributeNamed:@"href"]);
             urlSerie = [serie getAttributeNamed:@"href"];
             for(HTMLNode *child in [serie children]){
                 if([child findChildTag:@"img"]){
-                    NSLog(@"Imagen:%@",[[child findChildTag:@"img"] getAttributeNamed:@"src"]);
+                    //NSLog(@"Imagen:%@",[[child findChildTag:@"img"] getAttributeNamed:@"src"]);
                     urlImagen = [[child findChildTag:@"img"] getAttributeNamed:@"src"];
                 }
                 if ([[child children] count] > 3) {
                     NSArray *data = [child findChildTags:@"div"];
-                    NSLog(@"Titulo:%@",[[data objectAtIndex:1] contents]);
+                    //NSLog(@"Titulo:%@",[[data objectAtIndex:1] contents]);
                     titulo = [[data objectAtIndex:1] contents];
-                    NSLog(@"Año:%@",[[data objectAtIndex:2] contents]);
+                    //NSLog(@"Año:%@",[[data objectAtIndex:2] contents]);
                     ano = [[[data objectAtIndex:2] contents] intValue];
-                    NSLog(@"Descripcion:%@",[[data objectAtIndex:3] contents]);
+                    //NSLog(@"Descripcion:%@",[[data objectAtIndex:3] contents]);
                     descripcion = [[data objectAtIndex:3] contents];
                     todojunto = [[data objectAtIndex:4] contents];
                     split = [todojunto componentsSeparatedByString:@"|"];
@@ -302,6 +314,36 @@
         }
     }
     return [seriesArray copy];
+}
+
++(NSString *)googleLogin{
+    NSString *gUserString = @"movietimeiosapp@gmail.com";
+    NSString *gPassString = @"movietimepassword";
+    NSString *GOOGLE_CLIENT_AUTH_URL = @"https://www.google.com/accounts/ClientLogin?client=";
+    NSString *gSourceString = @"828011587087-13grm9fttepr2oca62tvb2ann7026kvt.apps.googleusercontent.com";
+    //begin NSURLConnection prep:
+    NSMutableURLRequest *httpReq = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:GOOGLE_CLIENT_AUTH_URL] ];
+    [httpReq setTimeoutInterval:30.0];
+    [httpReq setHTTPMethod:@"POST"];
+    //set headers
+    [httpReq addValue:@"Content-Type" forHTTPHeaderField:@"application/x-www-form-urlencoded"];
+    //set post body
+    NSString *requestBody = [[NSString alloc] 
+                             initWithFormat:@"Email=%@&Passwd=%@&service=reader&accountType=HOSTED_OR_GOOGLE&source=%@",
+                             gUserString, gPassString, [NSString stringWithFormat:@"%@%d", gSourceString]];
+    [httpReq setHTTPBody:[requestBody dataUsingEncoding:NSASCIIStringEncoding]];
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = nil;
+    NSString *responseStr = nil;
+    data = [NSURLConnection sendSynchronousRequest:httpReq returningResponse:&response error:&error];
+    responseStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    //extract SID + auth
+    NSArray *respArray = [responseStr componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]];
+    NSString *authString = [respArray objectAtIndex: 2];
+    authString = [authString stringByReplacingOccurrencesOfString: @"Auth=" withString: @""];
+    return authString;
+        
 }
 
 

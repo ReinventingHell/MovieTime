@@ -14,15 +14,17 @@
 //Basicas
 extern NSString * const host;
 extern NSString * const staticHost;
-//Ver
+//Shows
 extern NSString * const showsAll;
 extern NSString * const shows;
+extern NSString * const latestShowsRSS;
 extern NSString * const showInfo;
 extern NSString * const seasons;
 //Peliculas
 extern NSString * const movies;
 extern NSString * const movieInfo;
 extern NSString * const latestMovies;
+extern NSString * const latestMoviesRSS;
 extern NSString * const recomendedMovies;
 //Fuentes
 extern NSString * const sources;

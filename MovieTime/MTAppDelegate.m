@@ -8,6 +8,7 @@
 
 #import "MTCuevana.h"
 #import "MTShow.h"
+#import "MTMovie.h"
 #import "MTAppDelegate.h"
 #import "MTMainViewController.h"
 
@@ -26,20 +27,21 @@
     [self.window makeKeyAndVisible];
     
     //Pruebas
-//    NSArray *listaMovies = [MTCuevana getMovies];
-//    for (Show *listaItem in listaMovies) {
-//        NSLog(@"Titulo: %@", listaItem.title);
-//        NSLog(@"Url: %@", listaItem.url);
-//    }
+    NSArray *listaMovies = [MTCuevana getMovies];
+    for (MTMovie *listaItem in listaMovies) {
+        NSLog(@"Titulo: %@", listaItem.title);
+        NSLog(@"Url: %@", listaItem.url);
+    }
     //Para cada serie, imprimo la info y obtengo el resto de info
+    //NSArray *listaUltimosShows = [MTCuevana getLatestSeries];
     NSArray *listaShows = [MTCuevana getSeries];
-    //[MTCuevana getInfoSerie:[listaShows objectAtIndex:0]];
-    //for (Show *listaItem in listaShows) {
-        //NSLog(@"Titulo: %@", listaItem.title);
-        //NSLog(@"Url: %@", listaItem.url);
+    [MTCuevana getInfoSerie:[listaShows objectAtIndex:0]];
+    for (MTShow *listaItem in listaShows) {
+        NSLog(@"Titulo: %@", listaItem.title);
+        NSLog(@"Url: %@", listaItem.url);
         //Obtengo info
         //[MTCuevana getInfoSerie:listaItem];
-    //}
+    }
     //fin pruebas
     
     return YES;

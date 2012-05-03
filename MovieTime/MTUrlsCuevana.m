@@ -15,15 +15,17 @@
 //Basicas
 NSString * const host = @"http://www.cuevana.tv";
 NSString * const staticHost = @"http://sc.cuevana.tv";
-//Ver
+//Shows
 NSString * const showsAll = hostUrl@"/web/series?todas&page=";
 NSString * const shows = hostUrl@"/web/series";
+NSString * const latestShowsRSS = @"http://www.google.com/reader/atom/feed/http://www.cuevana.tv/rss/series?n=30";
 NSString * const showInfo = hostUrl@"/web/series?&%s&%s&%s"; //deberia cambiar los %s p
 NSString * const seasons = hostUrl@"/web/series?&%@&%@";
 //Peliculas
 NSString * const movies = hostUrl@"/web/peliculas?todas&page="; //page = 2 por ejemplo
 NSString * const movieInfo = hostUrl@"/web/peliculas?&%s&%s";
 NSString * const latestMovies = hostUrl@"/web/peliculas?&recientes";
+NSString * const latestMoviesRSS = @"/rss/peliculas";
 NSString * const recomendedMovies = hostUrl@"/web/peliculas?&populares";
 //Fuentes
 NSString * const sources = hostUrl@"/player/sources?id=%s";

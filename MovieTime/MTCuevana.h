@@ -11,9 +11,10 @@
 
 @interface MTCuevana : NSObject
 
-+(NSArray *)getLatestMovies;
-+(NSArray *)getRecommendedMovies;
++(NSArray *)getLatestMovies; // Hay que implementar
++(NSArray *)getRecommendedMovies; // Hay que implementar
 +(NSArray *)getAllSeries;
++(NSArray *)getLatestSeries; // Hay que parsear feed
 +(NSArray *)getMovies;
 +(NSArray *)getSeries;
 +(NSArray *)getInfoSerie:(MTShow *)serie;
