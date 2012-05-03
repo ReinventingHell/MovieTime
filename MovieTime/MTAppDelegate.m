@@ -27,21 +27,49 @@
     [self.window makeKeyAndVisible];
     
     //Pruebas
+    NSLog(@"-------- DESCARGANDO PAGE 1 DE MOVIES -------");
     NSArray *listaMovies = [MTCuevana getMovies];
     for (MTMovie *listaItem in listaMovies) {
         NSLog(@"Titulo: %@", listaItem.title);
         NSLog(@"Url: %@", listaItem.url);
     }
-    //Para cada serie, imprimo la info y obtengo el resto de info
-    //NSArray *listaUltimosShows = [MTCuevana getLatestSeries];
-    NSArray *listaShows = [MTCuevana getSeries];
-    [MTCuevana getInfoSerie:[listaShows objectAtIndex:0]];
+    NSLog(@"-------- TERMINO PAGE 1 DE MOVIES -------");
+    NSLog(@"-------- DESCARGANDO JSON SERIES -------");
+    NSArray *listaShows = [MTCuevana getAllSeries];
+    NSArray *infoShow;
     for (MTShow *listaItem in listaShows) {
         NSLog(@"Titulo: %@", listaItem.title);
         NSLog(@"Url: %@", listaItem.url);
-        //Obtengo info
-        //[MTCuevana getInfoSerie:listaItem];
+        // EL parser de info anda bien pero hay algun problema con la URL que armamos.. porque algunos links tienen - no espacios
+//        NSLog(@"-------- INFO -------");
+//        infoShow = [MTCuevana getInfoSerie:listaItem];
+//        if(infoShow){
+//            NSLog(@"Url Imagen: %@", [infoShow objectAtIndex:0]);
+//            NSLog(@"Año: %@", [infoShow objectAtIndex:2]);
+//            NSLog(@"Descripcion: %@", [infoShow objectAtIndex:3]);
+//            NSLog(@"Genero: %@", [infoShow objectAtIndex:4]);
+//            NSLog(@"Duracion: %@", [infoShow objectAtIndex:5]);
+//            NSLog(@"---------TERMINA INFO -------");
+//        }
     }
+    NSLog(@"-------- TERMINO JSON SERIES -------");
+    NSLog(@"-------- DESCARGANDO PAGE 1 DE SERIES -------");
+    NSArray *listaShowsPorHTML = [MTCuevana getSeries];
+    for (MTShow *listaItem in listaShowsPorHTML) {
+        NSLog(@"Titulo: %@", listaItem.title);
+        NSLog(@"Url: %@", listaItem.url);
+        //La url de la imagen no se guarda en el objeto Show...
+        NSLog(@"Descripcion: %@", listaItem.description);
+        NSLog(@"Año: %d", listaItem.year );
+        NSLog(@"Genero: %@", listaItem.genre);
+        NSLog(@"Duracion: %d", listaItem.duration);
+        NSLog(@"Idioma: %@", listaItem.lang);
+        NSLog(@"Temporadas: %d", listaItem.seasons);
+    }
+    NSLog(@"-------- TERMINO PAGE 1 DE SERIES -------");
+    NSLog(@"-------- DESCARGANDO FEED DE ULTIMOS CAPITULOS -------");
+    NSArray *listaUltimosShows = [MTCuevana getLatestSeries];
+    NSLog(@"-------- TERMINO FEED DE ULTIMOS CAPITULOS -------");
     //fin pruebas
     
     return YES;

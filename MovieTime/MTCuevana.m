@@ -194,47 +194,56 @@
 }
 
 +(NSArray *)getInfoSerie:(MTShow *)serie{
-    NSMutableArray* toReturn = [[NSMutableArray alloc] init];
+    NSMutableArray* toReturn;
     //Armo la url, le concateno en donde estan los %@ el id y el title
     NSString* tituloSinEspacio = [NSString stringWithString:[serie title]];
     //Reemplazo los espacios vacios con %20
     tituloSinEspacio = [tituloSinEspacio stringByReplacingOccurrencesOfString:@" "
                                                                    withString:@"%20"];
-                        
+    // Aca hay algun problema, de a ratos me tira cualquier pagina no la de la serie
     NSString* urlConParametros = [NSString stringWithFormat:seasons,[serie getIdWithSerie],tituloSinEspacio];
+    NSLog(@"Serie link:%@",urlConParametros);
     NSString *html = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlConParametros] encoding:NSUTF8StringEncoding error:nil];
-    //Creamos el parser
-    HTMLParser *parser = [[HTMLParser alloc] initWithString:html error:nil];
-    HTMLNode *bodyNode = [parser body];
-    NSString *urlImagen,*titulo,*descripcion,*genero;
-    int ano,duracion;
-    NSArray *serieNodes = [bodyNode findChildrenWithAttribute:@"src" matchingName:[serie getIdWithSerie] allowPartial:YES];
-    HTMLNode *serieData = [serieNodes objectAtIndex:0];
-    //NSLog(@"Imagen:%@",[serieData getAttributeNamed:@"src"]);
-    urlImagen = [serieData getAttributeNamed:@"src"];
-    serieNodes = [bodyNode findChildrenWithAttribute:@"class" matchingName:@"r" allowPartial:NO];
-    serieData = [serieNodes objectAtIndex:0];
-    NSArray *data = [serieData findChildTags:@"div"];
-    //NSLog(@"Titulo:%@",[[data objectAtIndex:0] contents]);
-    titulo = [[data objectAtIndex:0] contents];
-    //NSLog(@"Año:%@",[[data objectAtIndex:1] contents]);
-    ano = [[[data objectAtIndex:1] contents] intValue];
-    //NSLog(@"Descripcion:%@",[[data objectAtIndex:2] contents]);
-    descripcion = [[data objectAtIndex:2] contents];
-    serieNodes = [bodyNode findChildrenWithAttribute:@"class" matchingName:@"specs" allowPartial:NO];
-    serieData = [serieNodes objectAtIndex:0];
-    for(HTMLNode *child in [serieData children]){
-        if([[[child findChildTag:@"span"] getAttributeNamed:@"class"] isEqualToString:@"genero"]){
-            //NSLog(@"Genero:%@",[[child findChildTag:@"span"] contents]);
-            genero = [[child findChildTag:@"span"] contents];
+    //Si el HTML es distinto de nulo entramos
+    if(html){
+        HTMLParser *parser = [[HTMLParser alloc] initWithString:html error:nil];
+        HTMLNode *bodyNode = [parser body];
+        NSString *urlImagen,*titulo,*descripcion,*genero,*ano,*duracion;
+        NSArray *serieNodes = [bodyNode findChildrenWithAttribute:@"src" matchingName:[serie getIdWithSerie] allowPartial:YES];
+        HTMLNode *serieData = [serieNodes objectAtIndex:0];
+        NSLog(@"Imagen:%@",[serieData getAttributeNamed:@"src"]);
+        urlImagen = [serieData getAttributeNamed:@"src"];
+        serieNodes = [bodyNode findChildrenWithAttribute:@"class" matchingName:@"r" allowPartial:NO];
+        serieData = [serieNodes objectAtIndex:0];
+        NSArray *data = [serieData findChildTags:@"div"];
+        NSLog(@"Titulo:%@",[[data objectAtIndex:0] contents]);
+        titulo = [[data objectAtIndex:0] contents];
+        NSLog(@"Año:%@",[[data objectAtIndex:1] contents]);
+        ano = [[data objectAtIndex:1] contents];
+        NSLog(@"Descripcion:%@",[[data objectAtIndex:2] contents]);
+        descripcion = [[data objectAtIndex:2] contents];
+        serieNodes = [bodyNode findChildrenWithAttribute:@"class" matchingName:@"specs" allowPartial:NO];
+        serieData = [serieNodes objectAtIndex:0];
+        for(HTMLNode *child in [serieData children]){
+            if([[[child findChildTag:@"span"] getAttributeNamed:@"class"] isEqualToString:@"genero"]){
+                NSLog(@"Genero:%@",[[child findChildTag:@"span"] contents]);
+                genero = [[child findChildTag:@"span"] contents];
+            }
+            if([[[child findChildTag:@"span"] getAttributeNamed:@"class"] isEqualToString:@"duracion"]){
+                NSLog(@"Duracion:%@",[[child findChildTag:@"span"] contents]);
+                duracion = [[child findChildTag:@"span"] contents];
+            }
         }
-        if([[[child findChildTag:@"span"] getAttributeNamed:@"class"] isEqualToString:@"duracion"]){
-            //NSLog(@"Duracion:%@",[[child findChildTag:@"span"] contents]);
-            duracion = [[[child findChildTag:@"span"] contents] intValue];
-        }
+        toReturn = [[NSMutableArray alloc] init];
+        [toReturn addObject:urlImagen];
+        [toReturn addObject:titulo];
+        [toReturn addObject:ano];
+        [toReturn addObject:descripcion];
+        [toReturn addObject:genero];
+        [toReturn addObject:duracion];
     }
-    
-    return toReturn;
+    //Copia inmutable
+    return [toReturn copy];
 }
 
 +(NSArray *)getSeries
