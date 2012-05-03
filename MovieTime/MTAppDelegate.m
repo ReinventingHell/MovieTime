@@ -26,14 +26,18 @@
     [self.window makeKeyAndVisible];
     
     //Pruebas
-    NSMutableArray *lista = [MTCuevana getAllSeries];
-    //Para cada serie, imprimo la info y obtengo el resto de info
-    for (Show *listaItem in lista) {
+    NSArray *listaMovies = [MTCuevana getMovies];
+    for (Show *listaItem in listaMovies) {
         NSLog(@"Titulo: %@", listaItem.title);
         NSLog(@"Url: %@", listaItem.url);
-        //Obtengo info
-        [MTCuevana getInfoSerie:listaItem];
     }
+    //Para cada serie, imprimo la info y obtengo el resto de info
+//    for (Show *listaItem in lista) {
+//        NSLog(@"Titulo: %@", listaItem.title);
+//        NSLog(@"Url: %@", listaItem.url);
+//        //Obtengo info
+//        [MTCuevana getInfoSerie:listaItem];
+//    }
     //fin pruebas
     
     return YES;

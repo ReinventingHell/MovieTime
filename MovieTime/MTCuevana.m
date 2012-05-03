@@ -12,6 +12,7 @@
 #import "SBJson.h"
 #import "HTMLNode.h"
 #import "HTMLParser.h"
+#import "MTMovie.h"
 
 @interface MTCuevana()
 //Declaro los metodos y propiedades privadas de la clase
@@ -92,6 +93,7 @@
 
 +(NSArray *)getMovies
 {
+    NSMutableArray *moviesArray = [[NSMutableArray alloc] init];;
     int pageNumber = 1;
     //Descargamos el HTML de la primer pagina de peliculas
     NSURL *urlMovies = [NSURL URLWithString:[movies stringByAppendingString:[NSString stringWithFormat:@"%d",pageNumber]]];
@@ -123,30 +125,60 @@
         }
         NSLog(@"Pagina descargada:%d",pageNumber);
         pageNumber++;
-    } while (pageNumber<=3); // ACA VA maxPages , pero para testear puse 3
+    } while (pageNumber<=1); // ACA VA maxPages , pero para testear puse 3
     //Comenzamos a parsear, iniciamos con el string de todas las paginas
     parser = [[HTMLParser alloc] initWithString:html error:nil];
     bodyNode = [parser body];
     NSString *contienePeliculas = @"#!/peliculas/";
-    //busco el nodo padre de los demas nodos con info de la pelicula, siguiendo esta estructura:
-//    <a href="#!/peliculas/1833/die-another-day">
-//    <div class="img"><img src="http://sc.cuevana.tv/box/1833.jpg" /></div>
-//    <div class="box">
-//    <div class="rate"><span style="width:79%"></span></div>
-//    <div class="tit"><span class="floatl">007 - Otro Día Para Morir</span></div><div class="clearl"></div>
-//    <div class="ano">2002</div>
-//    <div class="txt">La nueva misión de James Bond empieza con una persecución en hidrofoil a gran velocidad a través de un campo de minas en la zona desmilitarizada del norte de Corea del Sur. De Hong Kong a...</div>
-//    <div class="rep"><b>Reparto:</b> <span class="reparto">Pierce Brosnan, Halle Berry, Judi Dench, Toby Stephens, John Cleese, Madonna, Ro...</span></div>
-//    <div class="in"><span class="genero">Acción</span> | <span class="idioma">Inglés</span> | <span class="duracion">123</span> min</div>
-//    </div>
-//    <div class="clearl"></div>
-//    </a>
+    //busco el nodo padre de los demas nodos con info de la pelicula
     NSArray *movieNodes = [bodyNode findChildrenWithAttribute:@"href" matchingName:contienePeliculas allowPartial:YES];
     //Por aca va la mano! hay que parsear los nodos hijos, q tienen la info.
+    NSString *urlPelicula,*urlImagen,*titulo,*descripcion,*reparto,*genero,*idioma;
+    int ano,duracion;
     for(HTMLNode *movie in movieNodes){
-        NSLog(@"HTML de la movie:%@", [movie rawContents]);
+        
+        if ([[movie children] count] > 1) { //Los nodos de pelis tiene 7 nodos y  los otros 1
+            //NSLog(@"URL:%@",[movie getAttributeNamed:@"href"]);
+            urlPelicula = [movie getAttributeNamed:@"href"];
+            for(HTMLNode *child in [movie children]){
+                if([child findChildTag:@"img"]){
+                    //NSLog(@"Imagen:%@",[[child findChildTag:@"img"] getAttributeNamed:@"src"]);
+                    urlImagen = [[child findChildTag:@"img"] getAttributeNamed:@"src"];
+                }
+                if ([[child children] count] > 3) { // Los hijos que tienen la data de pelis tienen mas que 3 nodos,mientras q los demas 3 o menos.
+                    for (HTMLNode *movieData in [child children]) {
+                        if([[[movieData findChildTag:@"span"] getAttributeNamed:@"class"] isEqualToString:@"floatl"]){
+                            //NSLog(@"Titulo:%@",[[movieData findChildTag:@"span"] contents]);
+                            titulo = [[movieData findChildTag:@"span"] contents];
+                        }
+                        if([[movieData getAttributeNamed:@"class"] isEqualToString:@"ano"]){
+                            //NSLog(@"Año:%@",[movieData contents]);
+                            ano = [[movieData contents] intValue];
+                        }
+                        if([[movieData getAttributeNamed:@"class"] isEqualToString:@"txt"]){
+                            //NSLog(@"Descripcion:%@",[movieData contents]);
+                            descripcion = [movieData contents];
+                        }
+                        if([[[movieData findChildTag:@"span"] getAttributeNamed:@"class"] isEqualToString:@"reparto"]){
+                            //NSLog(@"Reparto:%@",[[movieData findChildTag:@"span"] contents]);
+                            reparto = [[movieData findChildTag:@"span"] contents];
+                        }
+                        if ([[movieData findChildTags:@"span"] count]> 2) {
+                            //NSLog(@"Genero:%@",[[[movieData findChildTags:@"span"] objectAtIndex:0] contents]);
+                            genero = [[[movieData findChildTags:@"span"] objectAtIndex:0] contents];
+                            //NSLog(@"Idioma:%@",[[[movieData findChildTags:@"span"] objectAtIndex:1] contents]);
+                            idioma = [[[movieData findChildTags:@"span"] objectAtIndex:1] contents];
+                            //NSLog(@"Duracion:%@",[[[movieData findChildTags:@"span"] objectAtIndex:2] contents]);
+                            duracion = [[[[movieData findChildTags:@"span"] objectAtIndex:0] contents] intValue];
+                        }
+                    }
+                }
+            }
+            MTMovie *movieToAdd = [[MTMovie alloc] initWithTitle:titulo url:urlPelicula description:descripcion cast:reparto director:nil genre:genero lang:idioma duration:duracion year:ano];
+            [moviesArray addObject:movieToAdd];
+        }
     }
-    return nil;
+    return [moviesArray copy];
 }
 
 +(NSArray *)getInfoSerie:(Show *)serie{
