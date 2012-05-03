@@ -8,7 +8,7 @@
 
 #import "MTUrlsCuevana.h"
 #import "MTCuevana.h"
-#import "Show.h"
+#import "MTShow.h"
 #import "SBJson.h"
 #import "HTMLNode.h"
 #import "HTMLParser.h"
@@ -78,7 +78,7 @@
         int episodios = [[showItem objectForKey:@"episodios"] intValue];
         int temporadas = [[showItem objectForKey:@"temporadas"] intValue];
         //Creo la nueva serie
-        Show *serie = [[Show alloc] initWithTitle:titulo
+        MTShow *serie = [[MTShow alloc] initWithTitle:titulo
                                               url:url
                                           seasons:temporadas
                                          duration:duracion
@@ -181,8 +181,8 @@
     return [moviesArray copy];
 }
 
-+(NSArray *)getInfoSerie:(Show *)serie{
-    NSArray* toReturn = [[NSMutableArray alloc] init];
++(NSArray *)getInfoSerie:(MTShow *)serie{
+    NSMutableArray* toReturn = [[NSMutableArray alloc] init];
     //Armo la url, le concateno en donde estan los %@ el id y el title
     NSString* tituloSinEspacio = [NSString stringWithString:[serie title]];
     //Reemplazo los espacios vacios con %20
@@ -190,14 +190,120 @@
                                                                    withString:@"%20"];
                         
     NSString* urlConParametros = [NSString stringWithFormat:seasons,[serie getIdWithSerie],tituloSinEspacio];
-    //Obtengo la data
-    NSData* data = [self getDataFromUrl:urlConParametros];
-    //Armo el string con la info de data
-    NSString *respuesta = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
+    NSString *html = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlConParametros] encoding:NSUTF8StringEncoding error:nil];
+    //Creamos el parser
+    HTMLParser *parser = [[HTMLParser alloc] initWithString:html error:nil];
+    HTMLNode *bodyNode = [parser body];
+    NSString *urlImagen,*titulo,*descripcion,*genero;
+    int ano,duracion;
+    NSArray *serieNodes = [bodyNode findChildrenWithAttribute:@"src" matchingName:[serie getIdWithSerie] allowPartial:YES];
+    HTMLNode *serieData = [serieNodes objectAtIndex:0];
+    //NSLog(@"Imagen:%@",[serieData getAttributeNamed:@"src"]);
+    urlImagen = [serieData getAttributeNamed:@"src"];
+    serieNodes = [bodyNode findChildrenWithAttribute:@"class" matchingName:@"r" allowPartial:NO];
+    serieData = [serieNodes objectAtIndex:0];
+    NSArray *data = [serieData findChildTags:@"div"];
+    //NSLog(@"Titulo:%@",[[data objectAtIndex:0] contents]);
+    titulo = [[data objectAtIndex:0] contents];
+    //NSLog(@"Año:%@",[[data objectAtIndex:1] contents]);
+    ano = [[[data objectAtIndex:1] contents] intValue];
+    //NSLog(@"Descripcion:%@",[[data objectAtIndex:2] contents]);
+    descripcion = [[data objectAtIndex:2] contents];
+    serieNodes = [bodyNode findChildrenWithAttribute:@"class" matchingName:@"specs" allowPartial:NO];
+    serieData = [serieNodes objectAtIndex:0];
+    for(HTMLNode *child in [serieData children]){
+        if([[[child findChildTag:@"span"] getAttributeNamed:@"class"] isEqualToString:@"genero"]){
+            //NSLog(@"Genero:%@",[[child findChildTag:@"span"] contents]);
+            genero = [[child findChildTag:@"span"] contents];
+        }
+        if([[[child findChildTag:@"span"] getAttributeNamed:@"class"] isEqualToString:@"duracion"]){
+            //NSLog(@"Duracion:%@",[[child findChildTag:@"span"] contents]);
+            duracion = [[[child findChildTag:@"span"] contents] intValue];
+        }
+    }
     
     return toReturn;
 }
+
++(NSArray *)getSeries
+{
+    NSMutableArray *seriesArray = [[NSMutableArray alloc] init];;
+    int pageNumber = 1;
+    //Descargamos el HTML de la primer pagina de peliculas
+    NSURL *urlShow = [NSURL URLWithString:[showsAll stringByAppendingString:[NSString stringWithFormat:@"%d",pageNumber]]];
+    NSString *html = [NSString stringWithContentsOfURL:urlShow encoding:NSUTF8StringEncoding error:nil];
+    //Creamos el parser
+    HTMLParser *parser = [[HTMLParser alloc] initWithString:html error:nil];
+    HTMLNode *bodyNode = [parser body];
+    //Este bloque de codigo es para encontrar la cantidad maxima de paginas de peliculas
+    int maxPages = 0;
+    int currentValue = 0;
+    NSString *page;
+    //En los tags <a> se encuentra la informacion de page: 
+    NSArray *aNodes = [bodyNode findChildTags:@"a"];
+    for (HTMLNode *aNode in aNodes) {
+        page = [[aNode getAttributeNamed:@"href"] stringByReplacingOccurrencesOfString:@"page:" withString:@""];
+        currentValue = [page intValue];
+        //Almacenamos el maximo valor
+        if(currentValue>maxPages) maxPages = currentValue;
+    }
+    //Termina el bloque para encontrar la cantidad maxima de paginas de peliculas
+    //Comienza a descargar TODO el codigo html de las 190 paginas para luego ser parseado...
+    //Me parecia mas eficiente que descargar HTML -> parsear -> descargar HTML -> parsear..
+    do {
+        //Ya tenemos la primer pagina descargada asi que la salteamos, y luego se concatenan las demas.
+        if(pageNumber != 1){
+            urlShow = [NSURL URLWithString:[showsAll stringByAppendingString:[NSString stringWithFormat:@"%d",pageNumber]]];
+            html = [html stringByAppendingString:[NSString stringWithContentsOfURL:urlShow encoding:NSUTF8StringEncoding 
+                                                                             error:nil]];
+        }
+        NSLog(@"Pagina descargada:%d",pageNumber);
+        pageNumber++;
+    } while (pageNumber<=1); // ACA VA maxPages , pero para testear puse 3
+    //Comenzamos a parsear, iniciamos con el string de todas las paginas
+    parser = [[HTMLParser alloc] initWithString:html error:nil];
+    bodyNode = [parser body];
+    NSString *contieneSeries = @"#!/series/";
+    //busco el nodo padre de los demas nodos con info de la pelicula
+    NSArray *serieNodes = [bodyNode findChildrenWithAttribute:@"href" matchingName:contieneSeries allowPartial:YES];
+    //Por aca va la mano! hay que parsear los nodos hijos, q tienen la info.
+    NSString *urlSerie,*urlImagen,*titulo,*descripcion,*genero,*idioma,*todojunto;
+    NSArray *split;
+    int ano,episodios,duracion,seasons;
+    for(HTMLNode *serie in serieNodes){
+        if ([[serie children] count] > 1) { 
+            NSLog(@"URL:%@",[serie getAttributeNamed:@"href"]);
+            urlSerie = [serie getAttributeNamed:@"href"];
+            for(HTMLNode *child in [serie children]){
+                if([child findChildTag:@"img"]){
+                    NSLog(@"Imagen:%@",[[child findChildTag:@"img"] getAttributeNamed:@"src"]);
+                    urlImagen = [[child findChildTag:@"img"] getAttributeNamed:@"src"];
+                }
+                if ([[child children] count] > 3) {
+                    NSArray *data = [child findChildTags:@"div"];
+                    NSLog(@"Titulo:%@",[[data objectAtIndex:1] contents]);
+                    titulo = [[data objectAtIndex:1] contents];
+                    NSLog(@"Año:%@",[[data objectAtIndex:2] contents]);
+                    ano = [[[data objectAtIndex:2] contents] intValue];
+                    NSLog(@"Descripcion:%@",[[data objectAtIndex:3] contents]);
+                    descripcion = [[data objectAtIndex:3] contents];
+                    todojunto = [[data objectAtIndex:4] contents];
+                    split = [todojunto componentsSeparatedByString:@"|"];
+                    // ACA HAY QUE VER QUE CONVIENE DEJAR...
+                    genero = [[split objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                    idioma = [[split objectAtIndex:1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                    duracion = [[[[split objectAtIndex:2] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] stringByReplacingOccurrencesOfString:@"min" withString:@""] intValue];
+                    seasons = [[[[split objectAtIndex:3] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] stringByReplacingOccurrencesOfString:@"Temporadas:" withString:@""] intValue];
+                    episodios = [[[[split objectAtIndex:4] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] stringByReplacingOccurrencesOfString:@"Episodios:" withString:@""] intValue];
+                }
+            }
+            MTShow *serieToAdd = [[MTShow alloc] initWithTitle:titulo url:urlSerie description:descripcion genre:genero lang:idioma seasons:seasons episodes:episodios duration:duracion year:ano];
+            [seriesArray addObject:serieToAdd];
+        }
+    }
+    return [seriesArray copy];
+}
+
 
 //Implementacion metodos privados
 +(NSData *)getDataFromUrl:(NSString *)url{

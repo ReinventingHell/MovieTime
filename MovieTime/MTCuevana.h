@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Show.h"
+#import "MTShow.h"
 
 @interface MTCuevana : NSObject
 
@@ -15,6 +15,7 @@
 +(NSArray *)getRecommendedMovies;
 +(NSArray *)getAllSeries;
 +(NSArray *)getMovies;
-+(NSArray *)getInfoSerie:(Show *)serie;
++(NSArray *)getSeries;
++(NSArray *)getInfoSerie:(MTShow *)serie;
 
 @end

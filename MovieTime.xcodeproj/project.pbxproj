@@ -21,9 +21,9 @@
 		153DF4B71547F75100C28824 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4A91547F75100C28824 /* SBJsonTokeniser.m */; };
 		153DF4B81547F75100C28824 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4AB1547F75100C28824 /* SBJsonUTF8Stream.m */; };
 		153DF4B91547F75100C28824 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4AD1547F75100C28824 /* SBJsonWriter.m */; };
-		153DF4C31547F8D400C28824 /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4C21547F8D400C28824 /* Show.m */; };
-		153DF4C61547F8F200C28824 /* Season.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4C51547F8F100C28824 /* Season.m */; };
-		153DF4C91547F91200C28824 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4C81547F91200C28824 /* Episode.m */; };
+		153DF4C31547F8D400C28824 /* MTShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4C21547F8D400C28824 /* MTShow.m */; };
+		153DF4C61547F8F200C28824 /* MTSeason.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4C51547F8F100C28824 /* MTSeason.m */; };
+		153DF4C91547F91200C28824 /* MTEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4C81547F91200C28824 /* MTEpisode.m */; };
 		153DF4CC1547F92900C28824 /* MTMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 153DF4CB1547F92900C28824 /* MTMovie.m */; };
 		153DF4F0154837D200C28824 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 153DF4EF154837D100C28824 /* QuartzCore.framework */; };
 		157148511547F5A300B45A09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157148501547F5A300B45A09 /* UIKit.framework */; };
@@ -75,13 +75,13 @@
 		153DF4AB1547F75100C28824 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		153DF4AC1547F75100C28824 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		153DF4AD1547F75100C28824 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		153DF4C11547F8D400C28824 /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
-		153DF4C21547F8D400C28824 /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
-		153DF4C41547F8F100C28824 /* Season.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Season.h; sourceTree = "<group>"; };
-		153DF4C51547F8F100C28824 /* Season.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Season.m; sourceTree = "<group>"; };
-		153DF4C71547F91200C28824 /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Episode.h; sourceTree = "<group>"; };
-		153DF4C81547F91200C28824 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
-		153DF4CA1547F92800C28824 /* MTMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MTMovie.h; sourceTree = "<group>"; };
+		153DF4C11547F8D400C28824 /* MTShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTShow.h; sourceTree = "<group>"; };
+		153DF4C21547F8D400C28824 /* MTShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTShow.m; sourceTree = "<group>"; };
+		153DF4C41547F8F100C28824 /* MTSeason.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSeason.h; sourceTree = "<group>"; };
+		153DF4C51547F8F100C28824 /* MTSeason.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSeason.m; sourceTree = "<group>"; };
+		153DF4C71547F91200C28824 /* MTEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEpisode.h; sourceTree = "<group>"; };
+		153DF4C81547F91200C28824 /* MTEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEpisode.m; sourceTree = "<group>"; };
+		153DF4CA1547F92800C28824 /* MTMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMovie.h; sourceTree = "<group>"; };
 		153DF4CB1547F92900C28824 /* MTMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMovie.m; sourceTree = "<group>"; };
 		153DF4EF154837D100C28824 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1571484C1547F5A300B45A09 /* MovieTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,12 +154,12 @@
 			isa = PBXGroup;
 			children = (
 				153DF4C01547F7CB00C28824 /* Hosts */,
-				153DF4C11547F8D400C28824 /* Show.h */,
-				153DF4C21547F8D400C28824 /* Show.m */,
-				153DF4C41547F8F100C28824 /* Season.h */,
-				153DF4C51547F8F100C28824 /* Season.m */,
-				153DF4C71547F91200C28824 /* Episode.h */,
-				153DF4C81547F91200C28824 /* Episode.m */,
+				153DF4C11547F8D400C28824 /* MTShow.h */,
+				153DF4C21547F8D400C28824 /* MTShow.m */,
+				153DF4C41547F8F100C28824 /* MTSeason.h */,
+				153DF4C51547F8F100C28824 /* MTSeason.m */,
+				153DF4C71547F91200C28824 /* MTEpisode.h */,
+				153DF4C81547F91200C28824 /* MTEpisode.m */,
 				153DF4CA1547F92800C28824 /* MTMovie.h */,
 				153DF4CB1547F92900C28824 /* MTMovie.m */,
 			);
@@ -393,9 +393,9 @@
 				153DF4B71547F75100C28824 /* SBJsonTokeniser.m in Sources */,
 				153DF4B81547F75100C28824 /* SBJsonUTF8Stream.m in Sources */,
 				153DF4B91547F75100C28824 /* SBJsonWriter.m in Sources */,
-				153DF4C31547F8D400C28824 /* Show.m in Sources */,
-				153DF4C61547F8F200C28824 /* Season.m in Sources */,
-				153DF4C91547F91200C28824 /* Episode.m in Sources */,
+				153DF4C31547F8D400C28824 /* MTShow.m in Sources */,
+				153DF4C61547F8F200C28824 /* MTSeason.m in Sources */,
+				153DF4C91547F91200C28824 /* MTEpisode.m in Sources */,
 				153DF4CC1547F92900C28824 /* MTMovie.m in Sources */,
 				15DF3EBD154F5FCC00ECF7D3 /* ECSlidingViewController.m in Sources */,
 				15DF3EBE154F5FCC00ECF7D3 /* UIImage+ImageWithUIView.m in Sources */,

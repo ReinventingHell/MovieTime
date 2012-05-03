@@ -15,6 +15,7 @@
 extern NSString * const host;
 extern NSString * const staticHost;
 //Ver
+extern NSString * const showsAll;
 extern NSString * const shows;
 extern NSString * const showInfo;
 extern NSString * const seasons;

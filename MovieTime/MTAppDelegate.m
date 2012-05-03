@@ -7,7 +7,7 @@
 //
 
 #import "MTCuevana.h"
-#import "Show.h"
+#import "MTShow.h"
 #import "MTAppDelegate.h"
 #import "MTMainViewController.h"
 
@@ -32,13 +32,14 @@
 //        NSLog(@"Url: %@", listaItem.url);
 //    }
     //Para cada serie, imprimo la info y obtengo el resto de info
-    NSArray *listaShows = [MTCuevana getAllSeries];
-    for (Show *listaItem in listaShows) {
-        NSLog(@"Titulo: %@", listaItem.title);
-        NSLog(@"Url: %@", listaItem.url);
+    NSArray *listaShows = [MTCuevana getSeries];
+    //[MTCuevana getInfoSerie:[listaShows objectAtIndex:0]];
+    //for (Show *listaItem in listaShows) {
+        //NSLog(@"Titulo: %@", listaItem.title);
+        //NSLog(@"Url: %@", listaItem.url);
         //Obtengo info
-        [MTCuevana getInfoSerie:listaItem];
-    }
+        //[MTCuevana getInfoSerie:listaItem];
+    //}
     //fin pruebas
     
     return YES;
