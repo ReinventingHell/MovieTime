@@ -22,4 +22,6 @@
            duration:(int)pDuration
           episodies:(int)pEpisodies;
 
+- (NSString *)getIdWithSerie;
+
 @end

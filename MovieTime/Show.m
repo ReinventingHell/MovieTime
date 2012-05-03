@@ -34,9 +34,19 @@
         [self setDuration:pDuration];
         [self setEpisodies:pEpisodies];
     }
-//    dateCreated = [[NSDate alloc] init];
     // Return the address of the newly initialized object
     return self;
 }
 
+- (NSString *)getIdWithSerie{
+    
+    NSString* id = [NSString stringWithString:[self url]];
+    id = [id stringByReplacingOccurrencesOfString:@"#!/series/"
+                                       withString:@""];
+    
+    NSRange rango = [id rangeOfString:@"/"];
+    id = [id substringToIndex: rango.location];
+    
+    return id;
+}
 @end

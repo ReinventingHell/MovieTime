@@ -71,9 +71,9 @@
         //Ontengo los datos y creo la serie y la agrego a la lista
         NSString *titulo = [showItem objectForKey:@"tit"];
         NSString *url = [showItem objectForKey:@"url"];
-        int duracion = [showItem objectForKey:@"duracion"];
-        int episodios = [showItem objectForKey:@"episodios"];
-        int temporadas = [showItem objectForKey:@"temporadas"];
+        int duracion = [[showItem objectForKey:@"duracion"] intValue];
+        int episodios = [[showItem objectForKey:@"episodios"] intValue];
+        int temporadas = [[showItem objectForKey:@"temporadas"] intValue];
         //Creo la nueva serie
         Show *serie = [[Show alloc] initWithTitle:titulo
                                               url:url
@@ -97,6 +97,24 @@
     
 
     return nil;
+}
+
++(NSArray *)getInfoSerie:(Show *)serie{
+    NSArray* toReturn = [[NSMutableArray alloc] init];
+    //Armo la url, le concateno en donde estan los %@ el id y el title
+    NSString* tituloSinEspacio = [NSString stringWithString:[serie title]];
+    //Reemplazo los espacios vacios con %20
+    tituloSinEspacio = [tituloSinEspacio stringByReplacingOccurrencesOfString:@" "
+                                                                   withString:@"%20"];
+                        
+    NSString* urlConParametros = [NSString stringWithFormat:seasons,[serie getIdWithSerie],tituloSinEspacio];
+    //Obtengo la data
+    NSData* data = [self getDataFromUrl:urlConParametros];
+    //Armo el string con la info de data
+    NSString *respuesta = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+    
+    return toReturn;
 }
 
 //Implementacion metodos privados
