@@ -20,7 +20,7 @@ NSString * const shows = hostUrl@"/web/series";
 NSString * const showInfo = hostUrl@"/web/series?&%s&%s&%s"; //deberia cambiar los %s p
 NSString * const seasons = hostUrl@"/web/series?&%@&%@";
 //Peliculas
-NSString * const movies = hostUrl@"/web/peliculas";
+NSString * const movies = hostUrl@"/web/peliculas?todas&page="; //page = 2 por ejemplo
 NSString * const movieInfo = hostUrl@"/web/peliculas?&%s&%s";
 NSString * const latestMovies = hostUrl@"/web/peliculas?&recientes";
 NSString * const recomendedMovies = hostUrl@"/web/peliculas?&populares";
