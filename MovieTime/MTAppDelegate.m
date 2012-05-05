@@ -11,6 +11,7 @@
 #import "MTMovie.h"
 #import "MTAppDelegate.h"
 #import "MTMainViewController.h"
+#import "MTFeedParser.h"
 
 @implementation MTAppDelegate
 
@@ -68,7 +69,16 @@
     }
     NSLog(@"-------- TERMINO PAGE 1 DE SERIES -------");
     NSLog(@"-------- DESCARGANDO FEED DE ULTIMOS CAPITULOS -------");
-    NSArray *listaUltimosShows = [MTCuevana getLatestSeries];
+    MTFeedParser *parser = [[MTFeedParser alloc] init];
+    [parser getLatestSeries];
+    for (MWFeedItem *listaItem in [parser episodesArray]) {
+        NSLog(@"Titulo: %@", listaItem.title);
+        NSLog(@"Link: %@", listaItem.link);
+        NSLog(@"Fecha: %@", listaItem.date);
+        NSLog(@"Descripcion: %@", listaItem.summary);
+        //NSLog(@"Todo: %@", listaItem.description);
+    }
+    NSLog(@"Count:%d",[[parser episodesArray] count]);
     NSLog(@"-------- TERMINO FEED DE ULTIMOS CAPITULOS -------");
     //fin pruebas
     

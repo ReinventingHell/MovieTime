@@ -40,6 +40,7 @@
 // Parsing Properties
 @property (nonatomic, retain) NSXMLParser *feedParser;
 @property (nonatomic, retain) NSString *currentPath;
+@property (nonatomic, retain) NSString *auth;
 @property (nonatomic, retain) NSMutableString *currentText;
 @property (nonatomic, retain) NSDictionary *currentElementAttributes;
 @property (nonatomic, retain) MWFeedItem *item;

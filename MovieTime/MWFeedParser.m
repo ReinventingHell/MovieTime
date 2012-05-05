@@ -51,7 +51,7 @@
 // Properties
 @synthesize url, delegate;
 @synthesize urlConnection, asyncData, asyncTextEncodingName, connectionType;
-@synthesize feedParseType, feedParser, currentPath, currentText, currentElementAttributes, item, info;
+@synthesize feedParseType, feedParser, currentPath, currentText, currentElementAttributes, item, info, auth;
 @synthesize pathOfElementWithXHTMLType;
 @synthesize stopped, failed, parsing;
 
@@ -82,7 +82,7 @@
 
 // Initialise with a URL
 // Mainly for historic reasons before -parseURL:
-- (id)initWithFeedURL:(NSURL *)feedURL {
+- (id)initWithFeedURL:(NSURL *)feedURL andAuth:(NSString *)auth2{
 	if ((self = [self init])) {
 		
 		// Check if an string was passed as old init asked for NSString not NSURL
@@ -91,6 +91,7 @@
 		}
 		
 		// Remember url
+        self.auth = auth2;
 		self.url = feedURL;
 		
 	}
@@ -159,6 +160,7 @@
 												  cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData 
 											  timeoutInterval:60];
 	[request setValue:@"MWFeedParser" forHTTPHeaderField:@"User-Agent"];
+    [request addValue:auth forHTTPHeaderField:@"Authorization"];
 	
 	// Debug Log
 	MWLog(@"MWFeedParser: Connecting & downloading feed data");

@@ -86,6 +86,7 @@ typedef enum { FeedTypeUnknown, FeedTypeRSS, FeedTypeRSS1, FeedTypeAtom } FeedTy
 	
 	// Parsing State
 	NSURL *url;
+    NSString *auth;
 	BOOL aborted; // Whether parse stopped due to abort
 	BOOL parsing; // Whether the MWFeedParser has started parsing
 	BOOL stopped; // Whether the parse was stopped
@@ -129,7 +130,7 @@ typedef enum { FeedTypeUnknown, FeedTypeRSS, FeedTypeRSS1, FeedTypeAtom } FeedTy
 #pragma mark Public Methods
 
 // Init MWFeedParser with a URL string
-- (id)initWithFeedURL:(NSURL *)feedURL;
+- (id)initWithFeedURL:(NSURL *)feedURL andAuth:(NSString *)auth;
 
 // Begin parsing
 - (BOOL)parse;

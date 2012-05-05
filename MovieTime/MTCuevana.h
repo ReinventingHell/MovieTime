@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "MTShow.h"
 
-@interface MTCuevana : NSObject
+@interface MTCuevana : NSObject 
 
 +(NSArray *)getLatestMovies; // Hay que implementar
 +(NSArray *)getRecommendedMovies; // Hay que implementar
 +(NSArray *)getAllSeries;
-+(NSArray *)getLatestSeries; // Hay que parsear feed
 +(NSArray *)getMovies;
 +(NSArray *)getSeries;
 +(NSArray *)getInfoSerie:(MTShow *)serie;
