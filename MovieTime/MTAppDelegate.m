@@ -12,6 +12,7 @@
 #import "MTAppDelegate.h"
 #import "MTMainViewController.h"
 #import "MTFeedParser.h"
+#import "NSString+HTML.h"
 
 @implementation MTAppDelegate
 
@@ -75,7 +76,7 @@
         NSLog(@"Titulo: %@", listaItem.title);
         NSLog(@"Link: %@", listaItem.link);
         NSLog(@"Fecha: %@", listaItem.date);
-        NSLog(@"Descripcion: %@", listaItem.summary);
+        NSLog(@"Descripcion: %@", [listaItem.summary stringByConvertingHTMLToPlainText]);
         //NSLog(@"Todo: %@", listaItem.description);
     }
     NSLog(@"Count:%d",[[parser episodesArray] count]);
