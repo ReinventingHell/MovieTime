@@ -48,7 +48,7 @@
     //Obtengo la data
     NSData* data = [self getDataFromUrl:shows];
     
-    //Armo el string con la info de data
+    //Armo el string con la info de data PORQUE NO HACIAMOS initWIthCOntentsOF URL??
     NSString *respuesta = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     //Armo la expresion regular
     NSString *toParser = @"";
@@ -312,6 +312,35 @@
     return [seriesArray copy];
 }
 
++(NSDictionary *)getSourcesForId:(NSString *)idSources withType:(NSString *)type{
+
+    NSURL *url;
+    if([type isEqualToString:@"pelicula"]){
+        //OMFG BLACK MAGIC! xD
+        url=[NSURL URLWithString:[NSString stringWithFormat:movieSources,idSources]];
+    }else{
+        url=[NSURL URLWithString:[NSString stringWithFormat:showSources,idSources]];
+    }
+    NSString *html = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+    NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"sources = ({.*?}), sel_source" 
+                                                                    options:NSRegularExpressionCaseInsensitive
+                                                                      error:nil];
+    //BUENO NOSE PORQUE CARAJO NO MATCHEA LA PTM QLP!
+    NSArray *matches = [reg matchesInString:html options:0 range:NSMakeRange(0, html.length)];
+    NSString *sources;
+    for (NSTextCheckingResult *match in matches) {
+        NSRange matchRange = [match range];
+        sources = [sources substringWithRange:matchRange];
+        NSLog(@"Match:%@",sources);
+        
+    }
+    //def=360&audio=2&host=bayfiles&id=744&tipo=pelicula
+//    data = [("id", self.id), ("tipo", "serie"),
+//            ("def", quality), ("audio", "2"),
+//            ("host", host)]
+//    "2":{"360":["bayfiles","filebox","zalaa","180upload"],"720":["bayfiles","180upload"]}
+    return nil;
+}
 
 //Implementacion metodos privados
 +(NSData *)getDataFromUrl:(NSString *)url{

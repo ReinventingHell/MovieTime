@@ -27,21 +27,22 @@
     
     
     [self.window makeKeyAndVisible];
-    
-    //Pruebas
-    NSLog(@"-------- DESCARGANDO PAGE 1 DE MOVIES -------");
-    NSArray *listaMovies = [MTCuevana getMovies];
-    for (MTMovie *listaItem in listaMovies) {
-        NSLog(@"Titulo: %@", listaItem.title);
-        NSLog(@"Url: %@", listaItem.url);
-    }
-    NSLog(@"-------- TERMINO PAGE 1 DE MOVIES -------");
-    NSLog(@"-------- DESCARGANDO JSON SERIES -------");
-    NSArray *listaShows = [MTCuevana getAllSeries];
-    NSArray *infoShow;
-    for (MTShow *listaItem in listaShows) {
-        NSLog(@"Titulo: %@", listaItem.title);
-        NSLog(@"Url: %@", listaItem.url);
+    NSDictionary *sources = [MTCuevana getSourcesForId:@"4545" withType:@"pelicula"];
+
+    // DEJO TODO COMENTADO PORQ TOY PROBANDO OTRA COSA, SI QUERES VER COMO QUEDO LO OTRO DESCOMENTA
+//    NSLog(@"-------- DESCARGANDO PAGE 1 DE MOVIES -------");
+//    NSArray *listaMovies = [MTCuevana getMovies];
+//    for (MTMovie *listaItem in listaMovies) {
+//        NSLog(@"Titulo: %@", listaItem.title);
+//        NSLog(@"Url: %@", listaItem.url);
+//    }
+//    NSLog(@"-------- TERMINO PAGE 1 DE MOVIES -------");
+//    NSLog(@"-------- DESCARGANDO JSON SERIES -------");
+//    NSArray *listaShows = [MTCuevana getAllSeries];
+//    NSArray *infoShow;
+//    for (MTShow *listaItem in listaShows) {
+//        NSLog(@"Titulo: %@", listaItem.title);
+//        NSLog(@"Url: %@", listaItem.url);
         // EL parser de info anda bien pero hay algun problema con la URL que armamos.. porque algunos links tienen - no espacios
 //        NSLog(@"-------- INFO -------");
 //        infoShow = [MTCuevana getInfoSerie:listaItem];
@@ -53,37 +54,37 @@
 //            NSLog(@"Duracion: %@", [infoShow objectAtIndex:5]);
 //            NSLog(@"---------TERMINA INFO -------");
 //        }
-    }
-    NSLog(@"-------- TERMINO JSON SERIES -------");
-    NSLog(@"-------- DESCARGANDO PAGE 1 DE SERIES -------");
-    NSArray *listaShowsPorHTML = [MTCuevana getSeries];
-    for (MTShow *listaItem in listaShowsPorHTML) {
-        NSLog(@"Titulo: %@", listaItem.title);
-        NSLog(@"Url: %@", listaItem.url);
-        //La url de la imagen no se guarda en el objeto Show...
-        NSLog(@"Descripcion: %@", listaItem.description);
-        NSLog(@"Año: %d", listaItem.year );
-        NSLog(@"Genero: %@", listaItem.genre);
-        NSLog(@"Duracion: %d", listaItem.duration);
-        NSLog(@"Idioma: %@", listaItem.lang);
-        NSLog(@"Temporadas: %d", listaItem.seasons);
-    }
-    NSLog(@"-------- TERMINO PAGE 1 DE SERIES -------");
-    NSLog(@"-------- DESCARGANDO FEED DE ULTIMOS CAPITULOS -------");
-    MTFeedParser *parser = [[MTFeedParser alloc] init];
-    [parser getLatestSeries];
-    for (MWFeedItem *listaItem in [parser episodesArray]) {
-        NSLog(@"Titulo: %@", listaItem.title);
-        NSLog(@"Link: %@", listaItem.link);
-        NSLog(@"Fecha: %@", listaItem.date);
-        //NSLog(@"Descripcion: %@", listaItem.summary);
-        NSLog(@"Descripcion: %@", [listaItem.summary stringByConvertingHTMLToPlainText]);
-        NSLog(@"Imagen:%@",[listaItem.enclosures description]);
-        //NSLog(@"Todo: %@", listaItem.description);
-    }
-    NSLog(@"Count:%d",[[parser episodesArray] count]);
-    NSLog(@"-------- TERMINO FEED DE ULTIMOS CAPITULOS -------");
-    //fin pruebas
+//    }
+//    NSLog(@"-------- TERMINO JSON SERIES -------");
+//    NSLog(@"-------- DESCARGANDO PAGE 1 DE SERIES -------");
+//    NSArray *listaShowsPorHTML = [MTCuevana getSeries];
+//    for (MTShow *listaItem in listaShowsPorHTML) {
+//        NSLog(@"Titulo: %@", listaItem.title);
+//        NSLog(@"Url: %@", listaItem.url);
+//        //La url de la imagen no se guarda en el objeto Show...
+//        NSLog(@"Descripcion: %@", listaItem.description);
+//        NSLog(@"Año: %d", listaItem.year );
+//        NSLog(@"Genero: %@", listaItem.genre);
+//        NSLog(@"Duracion: %d", listaItem.duration);
+//        NSLog(@"Idioma: %@", listaItem.lang);
+//        NSLog(@"Temporadas: %d", listaItem.seasons);
+//    }
+//    NSLog(@"-------- TERMINO PAGE 1 DE SERIES -------");
+//    NSLog(@"-------- DESCARGANDO FEED DE ULTIMOS CAPITULOS -------");
+//    MTFeedParser *parser = [[MTFeedParser alloc] init];
+//    [parser getLatestSeries];
+//    for (MWFeedItem *listaItem in [parser episodesArray]) {
+//        NSLog(@"Titulo: %@", listaItem.title);
+//        NSLog(@"Link: %@", listaItem.link);
+//        NSLog(@"Fecha: %@", listaItem.date);
+//        //NSLog(@"Descripcion: %@", listaItem.summary);
+//        NSLog(@"Descripcion: %@", [listaItem.summary stringByConvertingHTMLToPlainText]);
+//        NSLog(@"Imagen:%@",[listaItem.enclosures description]);
+//        //NSLog(@"Todo: %@", listaItem.description);
+//    }
+//    NSLog(@"Count:%d",[[parser episodesArray] count]);
+//    NSLog(@"-------- TERMINO FEED DE ULTIMOS CAPITULOS -------");
+//    //fin pruebas
     
     return YES;
     

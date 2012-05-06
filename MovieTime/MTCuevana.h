@@ -17,5 +17,5 @@
 +(NSArray *)getMovies;
 +(NSArray *)getSeries;
 +(NSArray *)getInfoSerie:(MTShow *)serie;
-
++(NSDictionary *)getSourcesForId:(NSString *)idSources withType:(NSString *)type;
 @end

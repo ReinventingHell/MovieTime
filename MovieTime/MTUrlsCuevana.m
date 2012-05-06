@@ -29,8 +29,8 @@ NSString * const latestMoviesRSS = @"/rss/peliculas";
 NSString * const recomendedMovies = hostUrl@"/web/peliculas?&populares";
 //Fuentes
 NSString * const sources = hostUrl@"/player/sources?id=%s";
-NSString * const movieSources = hostUrl@"/player/sources?id=%s&tipo=pelicula";
-NSString * const showSources = hostUrl@"/player/sources?id=%s&tipo=serie";
+NSString * const movieSources = hostUrl@"/player/sources?id=%@&tipo=pelicula";
+NSString * const showSources = hostUrl@"/player/sources?id=%@&tipo=serie";
 NSString * const sourceGet = hostUrl@"/player/source_get";
 //Subtitulos
 NSString * const subShow = hostUrl@"/files/s/sub/%s_%s.srt";
