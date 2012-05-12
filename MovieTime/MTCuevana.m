@@ -316,7 +316,6 @@
 
     NSURL *url;
     if([type isEqualToString:@"pelicula"]){
-        //OMFG BLACK MAGIC! xD
         url=[NSURL URLWithString:[NSString stringWithFormat:movieSources,idSources]];
     }else{
         url=[NSURL URLWithString:[NSString stringWithFormat:showSources,idSources]];

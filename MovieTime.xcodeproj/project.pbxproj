@@ -33,6 +33,7 @@
 		1571485B1547F5A300B45A09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 157148591547F5A300B45A09 /* InfoPlist.strings */; };
 		1571485D1547F5A300B45A09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1571485C1547F5A300B45A09 /* main.m */; };
 		157148611547F5A300B45A09 /* MTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 157148601547F5A300B45A09 /* MTAppDelegate.m */; };
+		159AB6B41556423600106D1A /* MTPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 159AB6B31556423600106D1A /* MTPersistence.m */; };
 		15C5F4AB154FA8F600DB3820 /* MTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C5F4AA154FA8F600DB3820 /* MTMainViewController.m */; };
 		15C5F4B51550225800DB3820 /* Background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C5F4B41550225800DB3820 /* Background2.png */; };
 		15C5F4B91550260900DB3820 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C5F4B81550260900DB3820 /* Background.png */; };
@@ -104,6 +105,8 @@
 		1571485E1547F5A300B45A09 /* MovieTime-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MovieTime-Prefix.pch"; sourceTree = "<group>"; };
 		1571485F1547F5A300B45A09 /* MTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTAppDelegate.h; sourceTree = "<group>"; };
 		157148601547F5A300B45A09 /* MTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTAppDelegate.m; sourceTree = "<group>"; };
+		159AB6B21556423600106D1A /* MTPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPersistence.h; sourceTree = "<group>"; };
+		159AB6B31556423600106D1A /* MTPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPersistence.m; sourceTree = "<group>"; };
 		15C5F4A9154FA8F600DB3820 /* MTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMainViewController.h; sourceTree = "<group>"; };
 		15C5F4AA154FA8F600DB3820 /* MTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMainViewController.m; sourceTree = "<group>"; };
 		15C5F4B41550225800DB3820 /* Background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background2.png; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 				153DF4CB1547F92900C28824 /* MTMovie.m */,
 				15542BCB1555AE7D00EB05F2 /* MTFeedParser.h */,
 				15542BCC1555AE7D00EB05F2 /* MTFeedParser.m */,
+				159AB6B21556423600106D1A /* MTPersistence.h */,
+				159AB6B31556423600106D1A /* MTPersistence.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -493,6 +498,7 @@
 				15F2824915527674006A3D2A /* GTMNSString+HTML.m in Sources */,
 				15F2824C15527686006A3D2A /* NSString+XMLEntities.m in Sources */,
 				15542BCD1555AE7D00EB05F2 /* MTFeedParser.m in Sources */,
+				159AB6B41556423600106D1A /* MTPersistence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
