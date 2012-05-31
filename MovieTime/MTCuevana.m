@@ -92,7 +92,7 @@
 
 +(NSArray *)getMovies
 {
-    NSMutableArray *moviesArray = [[NSMutableArray alloc] init];;
+    NSMutableArray *moviesArray = [[NSMutableArray alloc] init];
     int pageNumber = 1;
     //Descargamos el HTML de la primer pagina de peliculas
     NSURL *urlMovies = [NSURL URLWithString:[movies stringByAppendingString:[NSString stringWithFormat:@"%d",pageNumber]]];

@@ -10,4 +10,6 @@
 
 @interface MTPersistence : NSObject
 
+- (NSArray *)dataLoad;
+
 @end
