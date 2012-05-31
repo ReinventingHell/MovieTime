@@ -13,21 +13,28 @@
 #import "MTMainViewController.h"
 #import "MTFeedParser.h"
 #import "NSString+HTML.h"
+#import "ECSlidingViewController.h"
 
 @implementation MTAppDelegate
 
 @synthesize window;
-@synthesize mainView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	// Initialize the main application window, set its size to the screen's applicationFrame
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.window.rootViewController = [[MTMainViewController alloc] initWithNibName:nil bundle:nil];
+    ECSlidingViewController *slide = (ECSlidingViewController *)self.window.rootViewController;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
+    
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+//        storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+//    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+//        storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
+//    }
+    
+    slide.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"FirstTop"];
     
     
     [self.window makeKeyAndVisible];
-    NSDictionary *sources = [MTCuevana getSourcesForId:@"4545" withType:@"pelicula"];
+    //NSDictionary *sources = [MTCuevana getSourcesForId:@"4545" withType:@"pelicula"];
 
     // DEJO TODO COMENTADO PORQ TOY PROBANDO OTRA COSA, SI QUERES VER COMO QUEDO LO OTRO DESCOMENTA
 //    NSLog(@"-------- DESCARGANDO PAGE 1 DE MOVIES -------");
