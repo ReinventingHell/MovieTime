@@ -10,7 +10,6 @@
 #import "MTShow.h"
 #import "MTMovie.h"
 #import "MTAppDelegate.h"
-#import "MTMainViewController.h"
 #import "MTFeedParser.h"
 #import "NSString+HTML.h"
 #import "ECSlidingViewController.h"
