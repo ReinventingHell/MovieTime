@@ -324,7 +324,6 @@
     NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"sources = ({.*?}), sel_source" 
                                                                     options:NSRegularExpressionCaseInsensitive
                                                                       error:nil];
-    //BUENO NOSE PORQUE CARAJO NO MATCHEA LA PTM QLP!
     NSArray *matches = [reg matchesInString:html options:0 range:NSMakeRange(0, html.length)];
     NSString *sources;
     for (NSTextCheckingResult *match in matches) {
